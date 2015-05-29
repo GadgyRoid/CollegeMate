@@ -30,22 +30,29 @@ public class DBAdapter {
      */
     // TODO: Setup your fields here:
     public static final String KEY_TITLE = "title";
-    public static final String KEY_DATE = "date";
-    public static final String KEY_TIME = "time";
+    public static final String KEY_DAY = "day";
+    public static final String KEY_MONTH = "month";
+    public static final String KEY_YEAR = "year";
+    public static final String KEY_HOUR = "hour";
+    public static final String KEY_MINUTE = "minute";
 
     // TODO: Setup your field numbers here (0 = KEY_ROWID, 1=...)
     public static final int COL_TITLE = 1;
-    public static final int COL_DATE = 2;
-    public static final int COL_TIME = 3;
+    public static final int COL_DAY = 2;
+    public static final int COL_MONTH = 3;
+    public static final int COL_YEAR = 4;
+    public static final int COL_HOUR = 5;
+    public static final int COL_MINUTE = 6;
 
 
-    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_TITLE, KEY_DATE, KEY_TIME};
+    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_TITLE, KEY_DAY,
+            KEY_MONTH, KEY_YEAR, KEY_HOUR,KEY_MINUTE};
 
     // DB info: it's name, and the table we are using (just one).
     public static final String DATABASE_NAME = "MyDb";
     public static final String DATABASE_TABLE = "mainTable";
     // Track DB version if a new version of your app changes the format.
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     private static final String DATABASE_CREATE_SQL =
             "create table " + DATABASE_TABLE
@@ -62,8 +69,11 @@ public class DBAdapter {
                     //  - "not null" means it is a required field (must be given a value).
                     // NOTE: All must be comma separated (end of line!) Last one must have NO comma!!
                     + KEY_TITLE + " text not null, "
-                    + KEY_DATE + " integer not null, "
-                    + KEY_TIME + " string not null"
+                    + KEY_DAY + " integer not null, "
+                    + KEY_MONTH + " integer not null, "
+                    + KEY_YEAR + " integer not null, "
+                    + KEY_HOUR + " integer not null, "
+                    + KEY_MINUTE + " integer not null"
 
                     // Rest  of creation:
                     + ");";
@@ -95,7 +105,7 @@ public class DBAdapter {
     }
 
     // Add a new set of values to the database.
-    public long insertRow(String title, String date, String time) {
+    public long insertRow(String title, int day, int month, int year, int hour, int minute) {
 		/*
 		 * CHANGE 3:
 		 */
@@ -104,8 +114,11 @@ public class DBAdapter {
         // Create row's data:
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TITLE, title);
-        initialValues.put(KEY_DATE, date);
-        initialValues.put(KEY_TIME, time);
+        initialValues.put(KEY_DAY, day);
+        initialValues.put(KEY_MONTH, month);
+        initialValues.put(KEY_YEAR, year);
+        initialValues.put(KEY_HOUR, hour);
+        initialValues.put(KEY_MINUTE, minute);
 
         // Insert it into the database.
         return db.insert(DATABASE_TABLE, null, initialValues);
@@ -151,7 +164,7 @@ public class DBAdapter {
     }
 
     // Change an existing row to be equal to new data.
-    public boolean updateRow(long rowId, String title, int date, String time) {
+    public boolean updateRow(long rowId, String title, int day, int month, int year, int hour, int minute) {
         String where = KEY_ROWID + "=" + rowId;
 
 		/*
@@ -162,8 +175,11 @@ public class DBAdapter {
         // Create row's data:
         ContentValues newValues = new ContentValues();
         newValues.put(KEY_TITLE, title);
-        newValues.put(KEY_DATE, date);
-        newValues.put(KEY_TIME, time);
+        newValues.put(KEY_DAY, day);
+        newValues.put(KEY_MONTH, month);
+        newValues.put(KEY_YEAR, year);
+        newValues.put(KEY_HOUR, hour);
+        newValues.put(KEY_MINUTE, minute);
 
         // Insert it into the database.
         return db.update(DATABASE_TABLE, newValues, where, null) != 0;

@@ -1,5 +1,10 @@
 package com.gadgetroid.collegemate;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
@@ -10,11 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Locale;
 
 
 public class NewAssignment extends ActionBarActivity {
+    Context context;
     public static TextView timeView;
     public static TextView dateView;
     public static String title;
@@ -22,6 +29,7 @@ public class NewAssignment extends ActionBarActivity {
     public static String curTime;
     DialogFragment dateDialogFragment;
     DBAdapter myDb;
+    Calendar c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +40,7 @@ public class NewAssignment extends ActionBarActivity {
 
         openDB();
 
-        Calendar c = Calendar.getInstance();
+        c = Calendar.getInstance();
         int curTimeHour = c.get(Calendar.HOUR_OF_DAY);
         int curTimeMinute = c.get(Calendar.MINUTE);
         curTime = getPaddedString(curTimeHour) + ":" + getPaddedString(curTimeMinute);
@@ -63,24 +71,60 @@ public class NewAssignment extends ActionBarActivity {
         });
     }
 
-    private void addNewAssignment(String date, String curTime) {
+    private void addNewAssignment(String date, String curTime) throws ParseException {
         EditText mTitle = (EditText)findViewById(R.id.editText);
         title = mTitle.getText().toString();
-        long newId = myDb.insertRow(title,date,curTime);
-        Toast toast = Toast.makeText(this,"Added!",Toast.LENGTH_SHORT);
-        toast.show();
-
-
+        long newId = myDb.insertRow(title,DatePickerFragment.day,DatePickerFragment.month,
+                DatePickerFragment.year,TimePickerFragment.hour,TimePickerFragment.minutes);
+        //Toast toast = Toast.makeText(this,"Added!",Toast.LENGTH_SHORT);
+        //toast.show();
+        setNotificationForCurrentReminder(newId);
     }
 
-    private String getPaddedString(int value) {
-        return String.format("%02d",value);
+    private void setNotificationForCurrentReminder(long newId) {
+        PendingIntent pendingIntent;
+        Cursor cursor = myDb.getRow(newId);
+        c.set(Calendar.YEAR, cursor.getInt(DBAdapter.COL_YEAR));
+        c.set(Calendar.MONTH, cursor.getInt(DBAdapter.COL_MONTH));
+        c.set(Calendar.DAY_OF_MONTH, cursor.getInt(DBAdapter.COL_DAY));
+        c.set(Calendar.HOUR_OF_DAY, cursor.getInt(DBAdapter.COL_HOUR));
+        c.set(Calendar.MINUTE, cursor.getInt(DBAdapter.COL_MINUTE));
+        c.set(Calendar.SECOND, 0);
+
+        Cursor notificationCursor = myDb.getAllRows();
+        AlarmManager alarmManager;
+        Intent intent = new Intent(NewAssignment.this, Receiver.class);
+        intent.putExtra("title", cursor.getString(DBAdapter.COL_TITLE));
+        intent.putExtra("id",cursor.getString(DBAdapter.COL_ROWID));
+        pendingIntent = PendingIntent.getBroadcast
+                (NewAssignment.this, Integer.parseInt(cursor.getString
+                        (DBAdapter.COL_ROWID)), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager = (AlarmManager) getSystemService(context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC, c.getTimeInMillis(), pendingIntent);
+        Toast toast = Toast.makeText(this, "Reminder set for " + c.getTime(), Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+
+
+    /*private String getTimeFromDb(Cursor cursor) {
+        //String time = cursor.getString(DBAdapter.COL_TIME);
+        return time;
+    }
+
+    private String getDateFromDb(Cursor cursor) {
+        //String date = cursor.getString(DBAdapter.COL_DATE);
+        return date;
     }
 
     public static String getMonth(int month) {
         String[] mMonths = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep",
                 "Oct","Nov","Dec"};
         return mMonths[month];
+    }*/
+
+    private String getPaddedString(int value) {
+        return String.format("%02d",value);
     }
 
     @Override
@@ -115,7 +159,11 @@ public class NewAssignment extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_done) {
-            addNewAssignment(date,curTime);
+            try {
+                addNewAssignment(date,curTime);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             finish();
             return true;
         }
