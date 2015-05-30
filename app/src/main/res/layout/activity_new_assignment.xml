@@ -88,10 +88,24 @@
             android:layout_gravity="center"
             android:hint="Notes"
             style="@android:style/Widget.Holo.EditText"
+            android:ellipsize="end"
             android:imeOptions="actionNext"
             android:inputType="textCapSentences"
             android:layout_below="@+id/subHeader2"
             android:id="@+id/editText1" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Subject"
+            style="@android:style/Widget.Holo.EditText"
+            android:imeOptions="actionDone"
+            android:inputType="textCapSentences"
+            android:layout_marginTop="16dp"
+            android:id="@+id/editText2"
+            android:layout_below="@+id/editText1"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

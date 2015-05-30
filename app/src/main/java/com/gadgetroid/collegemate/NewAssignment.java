@@ -27,6 +27,8 @@ public class NewAssignment extends ActionBarActivity {
     public static String title;
     public static String date;
     public static String curTime;
+    public static String subject;
+    public static String notes;
     DialogFragment dateDialogFragment;
     DBAdapter myDb;
     Calendar c;
@@ -73,9 +75,13 @@ public class NewAssignment extends ActionBarActivity {
 
     private void addNewAssignment(String date, String curTime) throws ParseException {
         EditText mTitle = (EditText)findViewById(R.id.editText);
+        EditText mNotes = (EditText)findViewById(R.id.editText1);
+        EditText mSub = (EditText)findViewById(R.id.editText2);
         title = mTitle.getText().toString();
+        subject = mSub.getText().toString();
+        notes = mNotes.getText().toString();
         long newId = myDb.insertRow(title,DatePickerFragment.day,DatePickerFragment.month,
-                DatePickerFragment.year,TimePickerFragment.hour,TimePickerFragment.minutes);
+                DatePickerFragment.year,TimePickerFragment.hour,TimePickerFragment.minutes,notes,subject);
         //Toast toast = Toast.makeText(this,"Added!",Toast.LENGTH_SHORT);
         //toast.show();
         setNotificationForCurrentReminder(newId);

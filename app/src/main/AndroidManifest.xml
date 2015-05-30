@@ -26,10 +26,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.gadgetroid.collegemate.AssignmentList" />
         </activity>
-        <service android:name=".AlarmService"
+
+        <service
+            android:name=".AlarmService"
             android:enabled="true" />
 
-        <receiver android:name=".Receiver"/>
+        <receiver android:name=".Receiver" />
+
+        <activity
+            android:name=".AssignmentDetails"
+            android:label="@string/title_activity_assignment_details"
+            android:parentActivityName=".AssignmentList" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gadgetroid.collegemate.AssignmentList" />
+        </activity>
     </application>
 
 </manifest>

@@ -3,18 +3,24 @@ package com.gadgetroid.collegemate;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.melnykov.fab.FloatingActionButton;
+
 
 public class AssignmentList extends ActionBarActivity {
     DBAdapter myDb;
-    public static ListView assignmentList;
+    ListView assignmentList;
     CheckBox checkBox;
     //public static ArrayAdapter<Assignment> arrayAdapter;
 
@@ -27,21 +33,62 @@ public class AssignmentList extends ActionBarActivity {
         openDB();
         populateListViewFromDb();
 
-        /*checkBox = (CheckBox)findViewById(R.id.checkBox);
-        checkBox.setOnClickListener(new View.OnClickListener() {
+        /*FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
+                .withDrawable(getResources().getDrawable(R.drawable.ic_action_add_new))
+                .withButtonColor(getResources().getColor(R.color.greenAccent))
+                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
+                .withMargins(0, 0, 16, 16)
+                .create();*/
+
+        com.melnykov.fab.FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.attachToListView(assignmentList);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),NewAssignment.class);
+                startActivity(intent);
+            }
+        });
+
+
+        checkBox = (CheckBox)findViewById(R.id.checkBox);
+        /*checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean done = ((CheckBox)v).isChecked();
+
                 if(done) {
                     //TODO delete the item from database
+                    TextView textView = (TextView)findViewById(R.id.assText);
+                    textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 }
             }
         });*/
+
+        final View sharedTextView = findViewById(R.id.assText);
+
+        assignmentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(AssignmentList.this, AssignmentDetails.class);
+                String s = String.valueOf(id);
+                intent.putExtra("id", s);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        AssignmentList.this,
+                new Pair<View, String>(view.findViewById(R.id.assText),
+                        getString(R.string.text_transition)));
+                ActivityCompat.startActivity(AssignmentList.this,intent,options.toBundle());
+            }
+        });
     }
 
-    public void isDone(View view) {
+    /*public void ifDone(View view) {
         boolean done = ((CheckBox)view).isChecked();
-    }
+        if(done) {
+            TextView textView = (TextView)findViewById(R.id.assText);
+            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+    }*/
 
     private void populateListViewFromDb() {
         Cursor cursor = myDb.getAllRows();
@@ -88,10 +135,10 @@ public class AssignmentList extends ActionBarActivity {
             return true;
         }
 
-        if (id == R.id.addNew) {
+        /*if (id == R.id.addNew) {
             Intent intent = new Intent(this,NewAssignment.class);
             startActivity(intent);
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

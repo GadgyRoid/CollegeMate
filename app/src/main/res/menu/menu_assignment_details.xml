@@ -1,11 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".AssignmentList">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gadgetroid.collegemate.AssignmentDetails">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
-    <!--item
-        android:id="@+id/addNew"
-        android:title="Add new assignment"
-        app:showAsAction="never"
-        android:icon="@drawable/ic_action_add_new" />-->
 </menu>
