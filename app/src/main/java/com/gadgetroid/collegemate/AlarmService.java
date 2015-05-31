@@ -37,7 +37,8 @@ public class AlarmService extends Service {
 
         mManager = (NotificationManager) this.getApplicationContext().getSystemService
                 (this.getApplicationContext().NOTIFICATION_SERVICE);
-        Intent intent1 = new Intent(this.getApplicationContext(),NewAssignment.class);
+        Intent intent1 = new Intent(this.getApplicationContext(),AssignmentDetails.class);
+        intent1.putExtra("id",intent.getExtras().getString("id"));
 
         Notification notification = new Notification
                 (R.mipmap.ic_launcher,"Assignment pending!", System.currentTimeMillis());

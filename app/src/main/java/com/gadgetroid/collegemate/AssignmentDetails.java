@@ -1,11 +1,15 @@
 package com.gadgetroid.collegemate;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -45,6 +49,33 @@ public class AssignmentDetails extends ActionBarActivity {
         mSubject.setText(subject);
         TextView mNotes = (TextView)findViewById(R.id.cvNotes);
         mNotes.setText(notes);
+    }
+
+    public void deleteEntry(View view) {
+        showDialog(1);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to delete this assignment?")
+               .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       Intent intent = getIntent();
+                       long itemId = Long.valueOf(intent.getStringExtra("id"));
+                       myDb.deleteRow(itemId);
+                       AssignmentList.assignmentList.deferNotifyDataSetChanged();
+                       supportFinishAfterTransition();
+                   }
+               })
+               .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.dismiss();
+                   }
+               });
+        return builder.create();
     }
 
     private void openDb() {
