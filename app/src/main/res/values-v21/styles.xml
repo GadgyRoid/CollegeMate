@@ -18,4 +18,25 @@
         <!--item name="android:windowSharedElementExitTransition">@android:transition/no_transition</item-->
     </style>
 
+    <style name="NewAssTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/teal</item>
+        <item name="colorPrimaryDark">@color/tealDark</item>
+        <item name="colorAccent">@color/greenAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
+        <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_dark</item>
+        <item name="android:textColorSecondary">@color/abc_primary_text_material_dark</item>
+        <item name="colorControlNormal">#c5c5c5</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_close</item>
+        <item name="colorControlActivated">@color/greenAccent</item>
+        <item name="colorControlHighlight">@color/greenAccent</item>
+        <item name="android:actionModeStyle">@style/NewCABTheme</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
+    <style name="NewCABTheme" parent="Widget.AppCompat.ActionMode">
+        <item name="android:titleTextStyle">@android:style/TextAppearance.Material.Widget.ActionMode.Title.Inverse</item>
+    </style>
+
 </resources>

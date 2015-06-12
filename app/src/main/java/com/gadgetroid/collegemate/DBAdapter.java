@@ -37,6 +37,7 @@ public class DBAdapter {
     public static final String KEY_MINUTE = "minute";
     public static final String KEY_NOTES = "notes";
     public static final String KEY_SUB = "sub";
+    public static final String KEY_DONE = "done";
 
     // TODO: Setup your field numbers here (0 = KEY_ROWID, 1=...)
     public static final int COL_TITLE = 1;
@@ -47,16 +48,17 @@ public class DBAdapter {
     public static final int COL_MINUTE = 6;
     public static final int COL_NOTES = 7;
     public static final int COL_SUB = 8;
+    public static final int COL_DONE = 9;
 
 
     public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_TITLE, KEY_DAY,
-            KEY_MONTH, KEY_YEAR, KEY_HOUR,KEY_MINUTE, KEY_NOTES, KEY_SUB};
+            KEY_MONTH, KEY_YEAR, KEY_HOUR,KEY_MINUTE, KEY_NOTES, KEY_SUB, KEY_DONE};
 
     // DB info: it's name, and the table we are using (just one).
     public static final String DATABASE_NAME = "MyDb";
     public static final String DATABASE_TABLE = "mainTable";
     // Track DB version if a new version of your app changes the format.
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 5;
 
     private static final String DATABASE_CREATE_SQL =
             "create table " + DATABASE_TABLE
@@ -79,7 +81,8 @@ public class DBAdapter {
                     + KEY_HOUR + " integer not null, "
                     + KEY_MINUTE + " integer not null, "
                     + KEY_NOTES + " text not null, "
-                    + KEY_SUB + " text not null"
+                    + KEY_SUB + " text not null, "
+                    + KEY_DONE + " integer not null"
 
                     // Rest  of creation:
                     + ");";
@@ -112,7 +115,7 @@ public class DBAdapter {
 
     // Add a new set of values to the database.
     public long insertRow(String title, int day, int month, int year, int hour, int minute,
-                          String notes, String sub) {
+                          String notes, String sub, int done) {
 		/*
 		 * CHANGE 3:
 		 */
@@ -128,6 +131,7 @@ public class DBAdapter {
         initialValues.put(KEY_MINUTE, minute);
         initialValues.put(KEY_NOTES, notes);
         initialValues.put(KEY_SUB, sub);
+        initialValues.put(KEY_DONE, done);
 
         // Insert it into the database.
         return db.insert(DATABASE_TABLE, null, initialValues);
@@ -174,7 +178,7 @@ public class DBAdapter {
 
     // Change an existing row to be equal to new data.
     public boolean updateRow(long rowId, String title, int day, int month, int year, int hour, int minute,
-                             String notes, String sub) {
+                             String notes, String sub, int done) {
         String where = KEY_ROWID + "=" + rowId;
 
 		/*
@@ -192,6 +196,7 @@ public class DBAdapter {
         newValues.put(KEY_MINUTE, minute);
         newValues.put(KEY_NOTES, notes);
         newValues.put(KEY_SUB, sub);
+        newValues.put(KEY_DONE, done);
 
         // Insert it into the database.
         return db.update(DATABASE_TABLE, newValues, where, null) != 0;

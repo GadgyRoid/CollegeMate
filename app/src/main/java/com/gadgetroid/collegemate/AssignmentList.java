@@ -20,7 +20,7 @@ import com.melnykov.fab.FloatingActionButton;
 
 public class AssignmentList extends ActionBarActivity {
     DBAdapter myDb;
-    ListView assignmentList;
+    public static ListView assignmentList;
     CheckBox checkBox;
     //public static ArrayAdapter<Assignment> arrayAdapter;
 
@@ -28,42 +28,24 @@ public class AssignmentList extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_list);
-        assignmentList = (ListView)findViewById(R.id.assList);
+        assignmentList = (ListView) findViewById(R.id.assList);
 
         openDB();
         populateListViewFromDb();
-
-        /*FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
-                .withDrawable(getResources().getDrawable(R.drawable.ic_action_add_new))
-                .withButtonColor(getResources().getColor(R.color.greenAccent))
-                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
-                .withMargins(0, 0, 16, 16)
-                .create();*/
 
         com.melnykov.fab.FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.attachToListView(assignmentList);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),NewAssignment.class);
+                Intent intent = new Intent(getApplicationContext(), NewAssignment.class);
                 startActivity(intent);
             }
         });
 
 
-        checkBox = (CheckBox)findViewById(R.id.checkBox);
-        /*checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean done = ((CheckBox)v).isChecked();
+        //checkBox = (CheckBox) findViewById(R.id.checkBox);
 
-                if(done) {
-                    //TODO delete the item from database
-                    TextView textView = (TextView)findViewById(R.id.assText);
-                    textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                }
-            }
-        });*/
 
         final View sharedTextView = findViewById(R.id.assText);
 
@@ -75,29 +57,30 @@ public class AssignmentList extends ActionBarActivity {
                 intent.putExtra("id", s);
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                         AssignmentList.this,
-                new Pair<View, String>(view.findViewById(R.id.assText),
-                        getString(R.string.text_transition)));
-                ActivityCompat.startActivity(AssignmentList.this,intent,options.toBundle());
+                        new Pair<View, String>(view.findViewById(R.id.assText),
+                                getString(R.string.text_transition)));
+                ActivityCompat.startActivity(AssignmentList.this, intent, options.toBundle());
             }
         });
+
+        //ifTaskCompleted();
     }
 
-    /*public void ifDone(View view) {
-        boolean done = ((CheckBox)view).isChecked();
-        if(done) {
-            TextView textView = (TextView)findViewById(R.id.assText);
-            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }
+    /*private void ifTaskCompleted() {
+        Cursor cursor = myDb.getAllRows();
+        startManagingCursor(cursor);
     }*/
 
     private void populateListViewFromDb() {
         Cursor cursor = myDb.getAllRows();
         startManagingCursor(cursor);
-        String[] fromFieldNames = new String[] {DBAdapter.KEY_TITLE};
-        int[] toViewIds = new int[] {R.id.assText};
+        //String dueOn = DBAdapter.KEY_DAY + "/" + DBAdapter.KEY_MONTH + "/" + DBAdapter.KEY_YEAR;
+        String[] fromFieldNames = new String[] {DBAdapter.KEY_TITLE,DBAdapter.KEY_DAY,DBAdapter.KEY_SUB};
+        int[] toViewIds = new int[] {R.id.assText,R.id.dueText,R.id.contextTextView};
         SimpleCursorAdapter myCursorAdapter = new SimpleCursorAdapter(this,R.layout.asslist_row_item,
                 cursor,fromFieldNames,toViewIds);
         assignmentList.setAdapter(myCursorAdapter);
+
     }
 
     private void openDB() {

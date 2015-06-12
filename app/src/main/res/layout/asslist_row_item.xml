@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="48dp"
+    android:layout_width="fill_parent" android:layout_height="88dp"
     android:gravity="center">
+
 
     <TextView
         android:id="@+id/assText"
         android:transitionName="@string/text_transition"
         android:layout_centerVertical="true"
-        android:paddingLeft="16dp"
+        android:textSize="16sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Text"
-        android:layout_toRightOf="@+id/checkBox"
-        android:layout_toEndOf="@+id/checkBox"
-        android:textAppearance="@style/normalText"/>
+        android:textAppearance="@style/normalText"
+        android:text="Text"/>
 
-    <CheckBox
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
-        android:focusable="false"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/dueText"
+        android:textSize="14sp"
+        android:textAppearance="@style/subText"
+        android:textColor="@android:color/darker_gray"
+        android:text="Due on"
+        android:layout_below="@+id/assText"/>
+
+    <TextView
+        android:id="@+id/contextTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/subText"
+        android:text="Context"
+        android:layout_below="@+id/dueText"/>
 
 
 </RelativeLayout>

@@ -5,10 +5,14 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -36,9 +40,18 @@ public class NewAssignment extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.NewAssTheme);
         setContentView(R.layout.activity_new_assignment);
         dateView = (TextView)findViewById(R.id.dateView);
         timeView = (TextView)findViewById(R.id.timeView);
+        Toolbar mToolbar;
+        mToolbar = (Toolbar)findViewById(R.id.toolBar);
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_close);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_clear_mtrl_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.abc_primary_text_material_dark), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         openDB();
 
@@ -48,11 +61,11 @@ public class NewAssignment extends ActionBarActivity {
         curTime = getPaddedString(curTimeHour) + ":" + getPaddedString(curTimeMinute);
         timeView.setText(curTime);
 
-        String curDay = c.getDisplayName(Calendar.DAY_OF_WEEK,Calendar.SHORT, Locale.ENGLISH);
+        String curDay = c.getDisplayName(Calendar.DAY_OF_WEEK,Calendar.LONG, Locale.ENGLISH);
         int curDate = c.get(Calendar.DATE);
         String curMon = c.getDisplayName(Calendar.MONTH,Calendar.SHORT,Locale.ENGLISH);
         int curYear = c.get(Calendar.YEAR);
-        date = curDay + " " + String.valueOf(curDate) + " " + curMon + ", " + String.valueOf(curYear);
+        date = curDay + " " + String.valueOf(curDate) + " " + curMon + " " + String.valueOf(curYear);
         dateView.setText(date);
 
         dateView.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +94,7 @@ public class NewAssignment extends ActionBarActivity {
         subject = mSub.getText().toString();
         notes = mNotes.getText().toString();
         long newId = myDb.insertRow(title,DatePickerFragment.day,DatePickerFragment.month,
-                DatePickerFragment.year,TimePickerFragment.hour,TimePickerFragment.minutes,notes,subject);
+                DatePickerFragment.year,TimePickerFragment.hour,TimePickerFragment.minutes,notes,subject,0);
         //Toast toast = Toast.makeText(this,"Added!",Toast.LENGTH_SHORT);
         //toast.show();
         setNotificationForCurrentReminder(newId);
@@ -152,8 +165,9 @@ public class NewAssignment extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_new_assignment, menu);
-        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_new_assignment, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

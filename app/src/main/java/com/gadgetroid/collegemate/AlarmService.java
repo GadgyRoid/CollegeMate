@@ -11,7 +11,8 @@ import android.os.IBinder;
  * Created by gadgetroid on 29/05/15.
  */
 public class AlarmService extends Service {
-    private NotificationManager mManager;
+    public static NotificationManager mManager;
+    public static int nId;
 
     @Override
     public IBinder onBind(Intent arg0)
@@ -33,7 +34,7 @@ public class AlarmService extends Service {
     {
         super.onStart(intent, startId);
         String title = intent.getExtras().getString("title");
-        int nId = Integer.valueOf(intent.getExtras().getString("id"));
+        nId = Integer.valueOf(intent.getExtras().getString("id"));
 
         mManager = (NotificationManager) this.getApplicationContext().getSystemService
                 (this.getApplicationContext().NOTIFICATION_SERVICE);
