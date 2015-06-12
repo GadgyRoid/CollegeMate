@@ -5,4 +5,5 @@
     <item name="greenAccent" type="color">#C5E1A5</item>
     <item name="MaterialLightGreen" type="color">#8BC34A</item>
     <item name="MaterialLightGreenDark" type="color">#689F38</item>
+    <item name="MaterialPurple" type="color">#673AB7</item>
 </resources>

@@ -1,20 +1,12 @@
 package com.gadgetroid.collegemate;
 
-import android.app.AlarmManager;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.PendingIntent;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -31,6 +23,13 @@ public class AssignmentDetails extends ActionBarActivity {
         Intent intent = getIntent();
         long itemId = Long.valueOf(intent.getStringExtra("id"));
 
+        TextView assDetTitleTextView = (TextView)findViewById(R.id.info_text);
+
+        Toolbar mToolbar = (Toolbar)findViewById(R.id.toolBar1);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         openDb();
         Cursor cursor = myDb.getRow(itemId);
         if(cursor.moveToFirst()) {
@@ -46,20 +45,22 @@ public class AssignmentDetails extends ActionBarActivity {
             done = cursor.getInt(DBAdapter.COL_DONE);
         }
 
-        TextView mTitle = (TextView)findViewById(R.id.info_text);
-        mTitle.setText(title);
-        String subtitle = "Due on " + day + "/" + month + "/" + year + " at " + hour + ":" + minute;
-        TextView mSubtitle = (TextView)findViewById(R.id.sub_text);
-        mSubtitle.setText(subtitle);
-        TextView mSubject = (TextView)findViewById(R.id.sub_text1);
-        mSubject.setText(subject);
-        TextView mNotes = (TextView)findViewById(R.id.cvNotes);
-        mNotes.setText(notes);
+        assDetTitleTextView.setText(title);
+        String assDetDateString = day + "/" + month + "/" + year;
+        TextView assDetDateTextView = (TextView)findViewById(R.id.AssDetDateTextView);
+        assDetDateTextView.setText(assDetDateString);
+        String assDetTimeString = minute + ":" + hour;
+        TextView assDetTimeTextView = (TextView)findViewById(R.id.AssDetTimeTextView);
+        assDetTimeTextView.setText(assDetTimeString);
+        TextView assDetContextTextView = (TextView)findViewById(R.id.AssDetContextTextView);
+        assDetContextTextView.setText(subject);
+        TextView assDetNotesTextView = (TextView)findViewById(R.id.AssDetNotesTextView);
+        assDetNotesTextView.setText(notes);
 
-        checkTaskStatus();
+        //checkTaskStatus();
     }
 
-    private void checkTaskStatus() {
+    /*private void checkTaskStatus() {
         if(done == 1) {
             markDone();
         }
@@ -177,7 +178,7 @@ public class AssignmentDetails extends ActionBarActivity {
             }
         }
             return builder.create();
-    }
+    }*/
 
     private void openDb() {
         myDb = new DBAdapter(this);
