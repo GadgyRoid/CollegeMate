@@ -1509,6 +1509,7 @@ containing a value of this type.
         public static final int AssDetContextTextView=0x7f0a0048;
         public static final int AssDetDateTextView=0x7f0a0045;
         public static final int AssDetDateTimeLinLayout=0x7f0a0043;
+        public static final int AssDetMenuMarkDone=0x7f0a0065;
         public static final int AssDetNotesLinearLayout=0x7f0a0049;
         public static final int AssDetNotesTextView=0x7f0a004a;
         public static final int AssDetRelativeReminderLayout=0x7f0a0044;
@@ -1521,7 +1522,7 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f0a0020;
         public static final int action_bar_title=0x7f0a001f;
         public static final int action_context_bar=0x7f0a0033;
-        public static final int action_done=0x7f0a0065;
+        public static final int action_done=0x7f0a0066;
         public static final int action_menu_divider=0x7f0a0002;
         public static final int action_menu_presenter=0x7f0a0003;
         public static final int action_mode_bar=0x7f0a002f;

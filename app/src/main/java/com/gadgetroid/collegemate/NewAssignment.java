@@ -9,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -124,8 +125,6 @@ public class NewAssignment extends ActionBarActivity {
         toast.show();
     }
 
-
-
     /*private String getTimeFromDb(Cursor cursor) {
         //String time = cursor.getString(DBAdapter.COL_TIME);
         return time;
@@ -150,6 +149,7 @@ public class NewAssignment extends ActionBarActivity {
     protected void onDestroy() {
         super.onDestroy();
         closeDB();
+        supportFinishAfterTransition();
     }
 
     private void closeDB() {
@@ -186,6 +186,12 @@ public class NewAssignment extends ActionBarActivity {
             }
             finish();
             return true;
+        }
+
+        if(id == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            closeDB();
+            supportFinishAfterTransition();
         }
 
         return super.onOptionsItemSelected(item);

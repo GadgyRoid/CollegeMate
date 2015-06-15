@@ -8,8 +8,9 @@
         android:layout_height="112dp"
         android:id="@+id/toolBar1"
         android:layout_alignParentTop="true"
+        android:minHeight="?attr/actionBarSize"
         android:elevation="4dp"
-        android:background="@color/teal">
+        android:background="#03A9F4">
 
         <TextView
             android:layout_width="wrap_content"
@@ -17,8 +18,8 @@
             android:id="@+id/info_text"
             android:transitionName="@string/text_transition"
             android:text="Title"
-            android:layout_marginLeft="64dp"
-            android:layout_marginTop="76dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="66dp"
             android:fontFamily="sans-serif-medium"
             android:textColor="@color/abc_primary_text_material_dark"
             android:textSize="18sp"/>
@@ -136,11 +137,12 @@
         android:src="@drawable/ic_pencil"
         android:id="@+id/fabOverlap"
         android:elevation="6dp"
-        android:padding="24dp"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
         android:background="@drawable/rounded_button"
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@id/toolBar1"
-        android:layout_marginBottom="-32dp"
+        android:layout_marginBottom="-26dp"
         android:layout_marginRight="20dp"/>
 
 </RelativeLayout>

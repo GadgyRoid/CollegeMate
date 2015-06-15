@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent" android:layout_height="88dp"
-    android:gravity="center">
+    android:paddingTop="16dp" android:paddingLeft="16dp" android:paddingRight="16dp">
 
 
     <TextView
         android:id="@+id/assText"
         android:transitionName="@string/text_transition"
-        android:layout_centerVertical="true"
         android:textSize="16sp"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/normalText"
         android:text="Text"/>
@@ -26,8 +25,9 @@
 
     <TextView
         android:id="@+id/contextTextView"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="14sp"
         android:textAppearance="@style/subText"
         android:text="Context"
         android:layout_below="@+id/dueText"/>
