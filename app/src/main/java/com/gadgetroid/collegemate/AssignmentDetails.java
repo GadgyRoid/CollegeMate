@@ -1,7 +1,14 @@
 package com.gadgetroid.collegemate;
 
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +19,7 @@ import android.widget.TextView;
 
 public class AssignmentDetails extends ActionBarActivity {
     DBAdapter myDb;
-    String title,subject,notes;
+    String title, subject, notes;
     int day, month, year, minute, hour, done;
 
     @Override
@@ -23,16 +30,19 @@ public class AssignmentDetails extends ActionBarActivity {
         Intent intent = getIntent();
         long itemId = Long.valueOf(intent.getStringExtra("id"));
 
-        TextView assDetTitleTextView = (TextView)findViewById(R.id.info_text);
+        TextView assDetTitleTextView = (TextView) findViewById(R.id.info_text);
 
-        Toolbar mToolbar = (Toolbar)findViewById(R.id.toolBar1);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolBar1);
         setSupportActionBar(mToolbar);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.abc_primary_text_material_dark), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         openDb();
         Cursor cursor = myDb.getRow(itemId);
-        if(cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             long idDB = cursor.getLong(DBAdapter.COL_ROWID);
             title = cursor.getString(DBAdapter.COL_TITLE);
             day = cursor.getInt(DBAdapter.COL_DAY);
@@ -47,18 +57,54 @@ public class AssignmentDetails extends ActionBarActivity {
 
         assDetTitleTextView.setText(title);
         String assDetDateString = day + "/" + month + "/" + year;
-        TextView assDetDateTextView = (TextView)findViewById(R.id.AssDetDateTextView);
+        TextView assDetDateTextView = (TextView) findViewById(R.id.AssDetDateTextView);
         assDetDateTextView.setText(assDetDateString);
         String assDetTimeString = minute + ":" + hour;
-        TextView assDetTimeTextView = (TextView)findViewById(R.id.AssDetTimeTextView);
+        TextView assDetTimeTextView = (TextView) findViewById(R.id.AssDetTimeTextView);
         assDetTimeTextView.setText(assDetTimeString);
-        TextView assDetContextTextView = (TextView)findViewById(R.id.AssDetContextTextView);
+        TextView assDetContextTextView = (TextView) findViewById(R.id.AssDetContextTextView);
         assDetContextTextView.setText(subject);
-        TextView assDetNotesTextView = (TextView)findViewById(R.id.AssDetNotesTextView);
+        TextView assDetNotesTextView = (TextView) findViewById(R.id.AssDetNotesTextView);
         assDetNotesTextView.setText(notes);
 
         //checkTaskStatus();
     }
+
+    private void deleteEntry() {
+        showDialog(1);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to delete this assignment?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = getIntent();
+                        long itemId = Long.valueOf(intent.getStringExtra("id"));
+                        myDb.deleteRow(itemId);
+                        Intent intent2 = new Intent(AssignmentDetails.this, Receiver.class);
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast
+                                (AssignmentDetails.this, (int) itemId, intent2,
+                                        PendingIntent.FLAG_UPDATE_CURRENT);
+                        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                        alarmManager.cancel(pendingIntent);
+                        AssignmentList.assignmentList.deferNotifyDataSetChanged();
+                        supportFinishAfterTransition();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        return builder.create();
+    }
+
+
+
 
     /*private void checkTaskStatus() {
         if(done == 1) {
@@ -213,6 +259,11 @@ public class AssignmentDetails extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if(id == R.id.AssDetMenuDelTask) {
+            deleteEntry();
             return true;
         }
 

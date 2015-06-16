@@ -1499,16 +1499,18 @@ containing a value of this type.
         public static final int ic_action_done=0x7f02003e;
         public static final int ic_clock=0x7f02003f;
         public static final int ic_close=0x7f020040;
-        public static final int ic_pencil=0x7f020041;
-        public static final int ic_subject_grey600_48dp=0x7f020042;
-        public static final int ic_tag=0x7f020043;
-        public static final int rounded_button=0x7f020044;
+        public static final int ic_delete=0x7f020041;
+        public static final int ic_pencil=0x7f020042;
+        public static final int ic_subject_grey600_48dp=0x7f020043;
+        public static final int ic_tag=0x7f020044;
+        public static final int rounded_button=0x7f020045;
     }
     public static final class id {
         public static final int AssDetContextLinearLayout=0x7f0a0047;
         public static final int AssDetContextTextView=0x7f0a0048;
         public static final int AssDetDateTextView=0x7f0a0045;
         public static final int AssDetDateTimeLinLayout=0x7f0a0043;
+        public static final int AssDetMenuDelTask=0x7f0a0066;
         public static final int AssDetMenuMarkDone=0x7f0a0065;
         public static final int AssDetNotesLinearLayout=0x7f0a0049;
         public static final int AssDetNotesTextView=0x7f0a004a;
@@ -1522,7 +1524,7 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f0a0020;
         public static final int action_bar_title=0x7f0a001f;
         public static final int action_context_bar=0x7f0a0033;
-        public static final int action_done=0x7f0a0066;
+        public static final int action_done=0x7f0a0067;
         public static final int action_menu_divider=0x7f0a0002;
         public static final int action_menu_presenter=0x7f0a0003;
         public static final int action_mode_bar=0x7f0a002f;
@@ -1810,7 +1812,10 @@ containing a value of this type.
         public static final int CardView_Dark=0x7f0d006a;
         public static final int CardView_Light=0x7f0d006b;
         public static final int NewAssTheme=0x7f0d006c;
+        public static final int NewAssTheme_Blue=0x7f0d0101;
+        public static final int NewAssTheme_Blue_ActionButton=0x7f0d0102;
         public static final int NewCABTheme=0x7f0d006d;
+        public static final int Overflow_Blue_Light=0x7f0d0103;
         public static final int Platform_AppCompat=0x7f0d006e;
         public static final int Platform_AppCompat_Dialog=0x7f0d006f;
         public static final int Platform_AppCompat_Light=0x7f0d0070;

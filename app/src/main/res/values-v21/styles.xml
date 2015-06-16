@@ -26,7 +26,6 @@
         <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
         <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_dark</item>
         <item name="android:textColorSecondary">@color/abc_primary_text_material_dark</item>
-        <item name="colorControlNormal">#c5c5c5</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_close</item>
         <item name="colorControlActivated">@color/greenAccent</item>
@@ -35,9 +34,27 @@
         <item name="android:windowActionBar">false</item>
     </style>
 
+    <style name="NewAssTheme.Blue" parent="NewAssTheme">
+        <item name="android:colorPrimaryDark">#0288D1</item>
+        <item name="android:textColorSecondary">#FFFFFF</item>
+        <item name="actionOverflowButtonStyle">@style/Overflow.Blue.Light</item>
+        <item name="android:actionMenuTextColor">#000000</item>
+        <item name="android:actionButtonStyle">@style/NewAssTheme.Blue.ActionButton</item>
+        <item name="actionButtonStyle">@style/NewAssTheme.Blue.ActionButton</item>
+    </style>
+
     <style name="NewCABTheme" parent="@style/Widget.AppCompat.ActionMode">
         <item name="android:titleTextStyle">@style/CABTitleTextStyle</item>
         <item name="android:background">@color/teal</item>
+    </style>
+
+    <style name="NewAssTheme.Blue.ActionButton" parent="Widget.AppCompat.ActionButton">
+        <item name="android:minWidth">32dip</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="Overflow.Blue.Light" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/abc_ic_menu_moreoverflow_mtrl_alpha</item>
     </style>
 
     <style name="CABTitleTextStyle">
