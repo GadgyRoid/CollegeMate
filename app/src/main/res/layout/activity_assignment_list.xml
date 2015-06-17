@@ -10,7 +10,8 @@
     <ListView
         android:id="@+id/assList"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:choiceMode="multipleChoice"/>
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"
@@ -18,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
-        android:paddingRight="8dp"
         android:src="@drawable/ic_action_add_new"
         fab:fab_colorNormal="@color/MaterialLightGreen"/>
         <!--fab:fab_colorPressed="@color/MaterialLightGreenDark"

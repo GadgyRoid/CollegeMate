@@ -96,11 +96,27 @@ public class NewAssignment extends ActionBarActivity {
         title = mTitle.getText().toString();
         subject = mSub.getText().toString();
         notes = mNotes.getText().toString();
-        long newId = myDb.insertRow(title,DatePickerFragment.day,DatePickerFragment.month,
-                DatePickerFragment.year,TimePickerFragment.hour,TimePickerFragment.minutes,notes,subject,0);
-        //Toast toast = Toast.makeText(this,"Added!",Toast.LENGTH_SHORT);
-        //toast.show();
-        setNotificationForCurrentReminder(newId);
+
+        if(DatePickerFragment.opened && TimePickerFragment.opened) {
+            long newId = myDb.insertRow(title,DatePickerFragment.day,DatePickerFragment.month,
+                    DatePickerFragment.year,TimePickerFragment.hour,TimePickerFragment.minutes,notes,subject,0);
+            //Toast toast = Toast.makeText(this,"Added!",Toast.LENGTH_SHORT);
+            //toast.show();
+            setNotificationForCurrentReminder(newId);
+        } else if(!DatePickerFragment.opened && !TimePickerFragment.opened) {
+            //TODO Write code
+            long newId = myDb.insertRow(title,c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),
+                    c.get(Calendar.YEAR),c.get(Calendar.HOUR_OF_DAY),c.get(Calendar.MINUTE),notes,subject,0);
+            setNotificationForCurrentReminder(newId);
+        } else if(DatePickerFragment.opened && !TimePickerFragment.opened) {
+            long newId = myDb.insertRow(title,DatePickerFragment.day,DatePickerFragment.month,
+                    DatePickerFragment.year,c.get(Calendar.HOUR_OF_DAY),c.get(Calendar.MINUTE),notes,subject,0);
+            setNotificationForCurrentReminder(newId);
+        } else if(!DatePickerFragment.opened && TimePickerFragment.opened) {
+            long newId = myDb.insertRow(title,c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH),
+                    c.get(Calendar.YEAR),TimePickerFragment.hour,TimePickerFragment.minutes,notes,subject,0);
+            setNotificationForCurrentReminder(newId);
+        }
     }
 
     private void setNotificationForCurrentReminder(long newId) {

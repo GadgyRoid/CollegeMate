@@ -1686,6 +1686,8 @@ containing a value of this type.
         public static final int text_transition=0x7f0c001d;
         public static final int title_activity_assignment_details=0x7f0c001e;
         public static final int title_activity_new_assignment=0x7f0c001f;
+        public static final int title_todoitem_detail=0x7f0c0020;
+        public static final int title_todoitem_list=0x7f0c0021;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0d0000;

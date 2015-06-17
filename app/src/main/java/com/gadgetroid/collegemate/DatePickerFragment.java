@@ -17,6 +17,7 @@ public class DatePickerFragment extends DialogFragment
     public static int year;
     public static int month;
     public static int day;
+    public static boolean opened = false;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class DatePickerFragment extends DialogFragment
         String curMon = c.getDisplayName(Calendar.MONTH,Calendar.SHORT,Locale.ENGLISH);
         String date = curDay + " " + String.valueOf(day) + " " + curMon + ", " + String.valueOf(year);
         NewAssignment.dateView.setText(date);
+        opened = true;
     }
 
 

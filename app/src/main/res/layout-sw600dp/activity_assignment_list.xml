@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:clickable="true"
-    android:paddingLeft="114dp"
-    android:paddingRight="114dp"
+    android:layout_margin="24dp"
     tools:context=".AssignmentList">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/assList"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

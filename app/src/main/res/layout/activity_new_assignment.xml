@@ -18,7 +18,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relLayFulWidEdiText"
-        android:paddingTop="8dp"
+        android:layout_marginTop="8dp"
         android:layout_below="@+id/toolBar">
 
         <EditText
@@ -26,17 +26,15 @@
             android:layout_height="56dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
             android:background="@null"
-            android:layout_gravity="center"
             android:hint="Enter title"
             android:textSize="16sp"
             android:fontFamily="sans-serif-medium"
             android:textColor="@color/abc_primary_text_material_light"
             android:imeOptions="actionNext"
             android:inputType="textCapSentences"
-            android:layout_alignParentTop="true"
             android:id="@+id/editText"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

@@ -14,6 +14,7 @@ import java.util.Calendar;
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
     public static int hour;
     public static int minutes;
+    public static boolean opened = false;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         String curMinute = getPaddedString(minute);
         String curTime = curHour + ":" + curMinute;
         NewAssignment.timeView.setText(curTime);
+        opened = true;
     }
 
     private String getPaddedString(int value) {

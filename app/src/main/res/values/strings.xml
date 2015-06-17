@@ -6,4 +6,6 @@
     <string name="title_activity_new_assignment">Add new</string>
     <string name="title_activity_assignment_details">Details</string>
     <string name="text_transition">transition:TEXT</string>
+    <string name="title_todoitem_list">ToDoItems</string>
+    <string name="title_todoitem_detail">ToDoItem Detail</string>
 </resources>

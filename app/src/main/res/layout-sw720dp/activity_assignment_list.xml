@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:clickable="true"
-    android:paddingLeft="114dp"
-    android:paddingRight="114dp"
+    android:layout_margin="24dp"
     tools:context=".AssignmentList">
 
     <ListView
