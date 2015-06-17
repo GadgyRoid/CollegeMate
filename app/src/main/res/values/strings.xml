@@ -8,4 +8,5 @@
     <string name="text_transition">transition:TEXT</string>
     <string name="title_todoitem_list">ToDoItems</string>
     <string name="title_todoitem_detail">ToDoItem Detail</string>
+    <string name="title_activity_about_acitvity">About</string>
 </resources>

@@ -24,6 +24,7 @@
             android:textColor="@color/abc_primary_text_material_dark"
             android:textSize="18sp"/>
 
+
     </android.support.v7.widget.Toolbar>
     
     <RelativeLayout
