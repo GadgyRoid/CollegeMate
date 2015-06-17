@@ -167,6 +167,7 @@ public class NewAssignment extends ActionBarActivity {
     protected void onDestroy() {
         super.onDestroy();
         closeDB();
+        AssignmentList.cursorAdapter.notifyDataSetChanged();
         supportFinishAfterTransition();
     }
 
@@ -199,6 +200,9 @@ public class NewAssignment extends ActionBarActivity {
         if (id == R.id.action_done) {
             try {
                 addNewAssignment(date,curTime);
+                Cursor newCursor = myDb.getAllRows();
+                AssignmentList.cursorAdapter.changeCursor(newCursor);
+                AssignmentList.cursorAdapter.notifyDataSetChanged();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -209,6 +213,9 @@ public class NewAssignment extends ActionBarActivity {
         if(id == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
             closeDB();
+            Cursor newCursor = myDb.getAllRows();
+            AssignmentList.cursorAdapter.changeCursor(newCursor);
+            AssignmentList.cursorAdapter.notifyDataSetChanged();
             supportFinishAfterTransition();
             return true;
         }

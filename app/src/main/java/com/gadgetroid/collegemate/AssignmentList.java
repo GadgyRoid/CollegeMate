@@ -21,6 +21,7 @@ import com.melnykov.fab.FloatingActionButton;
 public class AssignmentList extends ActionBarActivity {
     DBAdapter myDb;
     public static ListView assignmentList;
+    public static CursorAdapter cursorAdapter;
     CheckBox checkBox;
     //public static ArrayAdapter<Assignment> arrayAdapter;
 
@@ -31,7 +32,10 @@ public class AssignmentList extends ActionBarActivity {
         assignmentList = (ListView) findViewById(R.id.assList);
 
         openDB();
-        populateListViewFromDb();
+        //populateListViewFromDb();
+        Cursor cursor = myDb.getAllRows();
+        cursorAdapter = new CursorAdapter(this,cursor);
+        assignmentList.setAdapter(cursorAdapter);
 
         com.melnykov.fab.FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.attachToListView(assignmentList);
@@ -64,6 +68,16 @@ public class AssignmentList extends ActionBarActivity {
         });
 
         //ifTaskCompleted();
+
+        cursorAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Cursor c= myDb.getAllRows();
+        AssignmentList.cursorAdapter.changeCursor(c);
+        AssignmentList.cursorAdapter.notifyDataSetChanged();
     }
 
     /*private void ifTaskCompleted() {

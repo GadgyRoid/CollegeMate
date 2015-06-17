@@ -59,7 +59,7 @@ public class AssignmentDetails extends ActionBarActivity {
         String assDetDateString = day + "/" + month + "/" + year;
         TextView assDetDateTextView = (TextView) findViewById(R.id.AssDetDateTextView);
         assDetDateTextView.setText(assDetDateString);
-        String assDetTimeString = minute + ":" + hour;
+        String assDetTimeString = getPaddedString(hour) + ":" + getPaddedString(minute);
         TextView assDetTimeTextView = (TextView) findViewById(R.id.AssDetTimeTextView);
         assDetTimeTextView.setText(assDetTimeString);
         TextView assDetContextTextView = (TextView) findViewById(R.id.AssDetContextTextView);
@@ -90,7 +90,7 @@ public class AssignmentDetails extends ActionBarActivity {
                                         PendingIntent.FLAG_UPDATE_CURRENT);
                         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                         alarmManager.cancel(pendingIntent);
-                        AssignmentList.assignmentList.deferNotifyDataSetChanged();
+                        AssignmentList.cursorAdapter.notifyDataSetChanged();
                         supportFinishAfterTransition();
                     }
                 })
@@ -268,5 +268,9 @@ public class AssignmentDetails extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private String getPaddedString(int value) {
+        return String.format("%02d",value);
     }
 }

@@ -1497,13 +1497,14 @@ containing a value of this type.
         public static final int ic_access_time_black_48dp=0x7f02003c;
         public static final int ic_action_add_new=0x7f02003d;
         public static final int ic_action_done=0x7f02003e;
-        public static final int ic_clock=0x7f02003f;
-        public static final int ic_close=0x7f020040;
-        public static final int ic_delete=0x7f020041;
-        public static final int ic_pencil=0x7f020042;
-        public static final int ic_subject_grey600_48dp=0x7f020043;
-        public static final int ic_tag=0x7f020044;
-        public static final int rounded_button=0x7f020045;
+        public static final int ic_assignment=0x7f02003f;
+        public static final int ic_clock=0x7f020040;
+        public static final int ic_close=0x7f020041;
+        public static final int ic_delete=0x7f020042;
+        public static final int ic_pencil=0x7f020043;
+        public static final int ic_subject_grey600_48dp=0x7f020044;
+        public static final int ic_tag=0x7f020045;
+        public static final int rounded_button=0x7f020046;
     }
     public static final class id {
         public static final int AssDetContextLinearLayout=0x7f0a0047;
@@ -1516,6 +1517,7 @@ containing a value of this type.
         public static final int AssDetNotesTextView=0x7f0a004a;
         public static final int AssDetRelativeReminderLayout=0x7f0a0044;
         public static final int AssDetTimeTextView=0x7f0a0046;
+        public static final int AssListContextualDelete=0x7f0a0067;
         public static final int action_bar=0x7f0a0032;
         public static final int action_bar_activity_content=0x7f0a0000;
         public static final int action_bar_container=0x7f0a0031;
@@ -1524,7 +1526,7 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f0a0020;
         public static final int action_bar_title=0x7f0a001f;
         public static final int action_context_bar=0x7f0a0033;
-        public static final int action_done=0x7f0a0067;
+        public static final int action_done=0x7f0a0068;
         public static final int action_menu_divider=0x7f0a0002;
         public static final int action_menu_presenter=0x7f0a0003;
         public static final int action_mode_bar=0x7f0a002f;
@@ -1648,7 +1650,8 @@ containing a value of this type.
     public static final class menu {
         public static final int menu_assignment_details=0x7f0e0000;
         public static final int menu_assignment_list=0x7f0e0001;
-        public static final int menu_new_assignment=0x7f0e0002;
+        public static final int menu_assignment_list_contextual=0x7f0e0002;
+        public static final int menu_new_assignment=0x7f0e0003;
     }
     public static final class mipmap {
         public static final int ic_launcher=0x7f030000;

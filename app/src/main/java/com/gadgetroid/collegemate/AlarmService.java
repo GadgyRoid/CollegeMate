@@ -1,6 +1,5 @@
 package com.gadgetroid.collegemate;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -8,6 +7,7 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 
 /**
  * Created by gadgetroid on 29/05/15.
@@ -43,19 +43,31 @@ public class AlarmService extends Service {
         Intent intent1 = new Intent(this.getApplicationContext(),AssignmentDetails.class);
         intent1.putExtra("id",intent.getExtras().getString("id"));
 
-        Notification notification = new Notification
-                (R.mipmap.ic_launcher,"Assignment pending!", System.currentTimeMillis());
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_assignment)
+                .setContentTitle(title)
+                .setContentText("One assignment due!");
+
+        //Notification notification = new Notification
+          //      (R.drawable.ic_assignment,"Assignment pending!", System.currentTimeMillis());
         intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingNotificationIntent = PendingIntent.getActivity
                 (this.getApplicationContext(),0, intent1,PendingIntent.FLAG_UPDATE_CURRENT);
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.setLatestEventInfo(this.getApplicationContext(),
-                "Assignment pending!", title, pendingNotificationIntent);
+        //mBuilder.flags |= Notification.FLAG_AUTO_CANCEL;
+        //notification.setLatestEventInfo(this.getApplicationContext(),
+           //     "Assignment pending!", title, pendingNotificationIntent);
 
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        //Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        mManager.notify(nId, notification);
+        mBuilder.setContentIntent(pendingNotificationIntent);
+        mBuilder.setAutoCancel(true);
+        mBuilder.setSound(alarmSound);
+
+        mManager.notify(nId, mBuilder.build());
     }
 
     @Override
