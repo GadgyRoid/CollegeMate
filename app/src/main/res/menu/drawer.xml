@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/AssListDrawerMenuAssignments"
+            android:checked="true"
+            android:icon="@drawable/ic_assignment_black"
+            android:title="Assignments" />
+        <item
+            android:id="@+id/AssListDrawerMenuAttTracker"
+            android:icon="@drawable/ic_class_black"
+            android:title="Attendance tracker" />
+    </group>
+</menu>

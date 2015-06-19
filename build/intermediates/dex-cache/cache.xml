@@ -2,32 +2,18 @@
 <items version="2" >
 
     <item
+        jar="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/classes-6be17605a3402c04df104cd17419841728cc91d3.jar" />
+    </item>
+    <item
         jar="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/exploded-aar/com.melnykov/floatingactionbutton/1.3.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
         <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/classes-1d356c85214b36edec111f3d9cda4b48002e29a4.jar" />
-    </item>
-    <item
-        jar="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/classes-de6e341fd0bdca09ca7cc92d2207652d09d79fef.jar" />
-    </item>
-    <item
-        jar="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/classes-deff59e00969fb99e72ca30a8cb7be6e97d98386.jar" />
-    </item>
-    <item
-        jar="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-4a48d57b3bde60f5840d81940b4d793afa4af98c.jar" />
     </item>
     <item
         jar="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.0.0/classes.jar"
@@ -58,11 +44,25 @@
         <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/library-2.4.0-12a88935464a1d0d483c3fc5d76285e74815c891.jar" />
     </item>
     <item
-        jar="/Users/gadgetroid/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jar="/Users/gadgetroid/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-064d31f66e9ced122a09d8c5be2c521104d8288a.jar" />
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-d3f8c733cedd32f68fc6fbbd025c71c45378ad1a.jar" />
+    </item>
+    <item
+        jar="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/classes-37fc2afe8484d2ce699bf0adf8fa729ed55db087.jar" />
+    </item>
+    <item
+        jar="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-128b828c96406366d1a19db93922bc6cd8610303.jar" />
     </item>
     <item
         jar="/Users/gadgetroid/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
@@ -70,6 +70,13 @@
         revision="21.1.2"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
         <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-485ca2c2ef2e85d86bc8bce2adb36ec36317b3c2.jar" />
+    </item>
+    <item
+        jar="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="/Users/gadgetroid/AndroidStudioProjects/CollegeMate/app/build/intermediates/pre-dexed/debug/classes-5b77db478484b6edc43a8d1e93e886409c6f5d9a.jar" />
     </item>
 
 </items>

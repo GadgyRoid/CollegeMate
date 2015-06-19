@@ -6,8 +6,11 @@
         <item name="colorPrimary">@color/teal</item>
         <item name="colorPrimaryDark">@color/tealDark</item>
         <item name="colorAccent">@color/greenAccent</item>
+        <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:actionModeStyle">@style/NewCABTheme</item>
         <!--item name="android:windowExitTransition">@android:transition/no_transition</item-->
 
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
@@ -27,10 +30,12 @@
         <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_dark</item>
         <item name="android:textColorSecondary">@color/abc_primary_text_material_dark</item>
         <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@android:color/white</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_close</item>
         <item name="colorControlActivated">@color/greenAccent</item>
         <item name="colorControlHighlight">@color/greenAccent</item>
         <item name="actionModeStyle">@style/NewCABTheme</item>
+        <item name="android:actionModeStyle">@style/NewCABTheme</item>
         <item name="android:windowActionBar">false</item>
     </style>
 
@@ -43,9 +48,8 @@
         <item name="actionButtonStyle">@style/NewAssTheme.Blue.ActionButton</item>
     </style>
 
-    <style name="NewCABTheme" parent="@style/Widget.AppCompat.ActionMode">
-        <item name="android:titleTextStyle">@style/CABTitleTextStyle</item>
-        <item name="android:background">@color/teal</item>
+    <style name="NewCABTheme" parent="Widget.AppCompat.ActionMode">
+        <item name="background">@color/teal</item>
     </style>
 
     <style name="NewAssTheme.Blue.ActionButton" parent="Widget.AppCompat.ActionButton">

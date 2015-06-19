@@ -27,12 +27,12 @@
         <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
         <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_dark</item>
         <item name="android:textColorSecondary">@color/abc_primary_text_material_dark</item>
-        <item name="android:actionModeStyle">@style/NewCABTheme</item>
+        <item name="actionModeStyle">@style/NewCABTheme</item>
         <item name="windowActionBar">false</item>
     </style>
 
     <style name="NewCABTheme" parent="Widget.AppCompat.ActionMode">
-        <item name="android:textColorPrimary">@color/abc_primary_text_material_light</item>
+        <item name="background">@color/teal</item>
     </style>
 
 </resources>

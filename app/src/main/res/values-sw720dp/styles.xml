@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
 
 
-    <style name="NewAssTheme" parent="Theme.AppCompat.Dialog">
+    <style name="NewAssTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/teal</item>
         <item name="colorPrimaryDark">@color/tealDark</item>
         <item name="colorAccent">@color/greenAccent</item>
