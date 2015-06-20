@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -265,6 +266,13 @@ public class AssignmentDetails extends ActionBarActivity {
         if(id == R.id.AssDetMenuDelTask) {
             deleteEntry();
             return true;
+        }
+
+        if(id == android.R.id.home) {
+            supportFinishAfterTransition();
+            final Intent intent = NavUtils.getParentActivityIntent(this);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            NavUtils.navigateUpTo(this, intent);
         }
 
         return super.onOptionsItemSelected(item);

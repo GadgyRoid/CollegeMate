@@ -2259,14 +2259,15 @@ containing a value of this type.
         public static final int ic_clock=0x7f020049;
         public static final int ic_close=0x7f02004a;
         public static final int ic_delete=0x7f02004b;
-        public static final int ic_hamburger=0x7f02004c;
-        public static final int ic_pencil=0x7f02004d;
-        public static final int ic_subject_grey600_48dp=0x7f02004e;
-        public static final int ic_tag=0x7f02004f;
-        public static final int list_selector=0x7f020050;
-        public static final int notification_template_icon_bg=0x7f020053;
-        public static final int rounded_button=0x7f020051;
-        public static final int snackbar_background=0x7f020052;
+        public static final int ic_edit=0x7f02004c;
+        public static final int ic_hamburger=0x7f02004d;
+        public static final int ic_pencil=0x7f02004e;
+        public static final int ic_subject_grey600_48dp=0x7f02004f;
+        public static final int ic_tag=0x7f020050;
+        public static final int list_selector=0x7f020051;
+        public static final int notification_template_icon_bg=0x7f020054;
+        public static final int rounded_button=0x7f020052;
+        public static final int snackbar_background=0x7f020053;
     }
     public static final class id {
         public static final int AboutBannerImageView=0x7f0a0066;

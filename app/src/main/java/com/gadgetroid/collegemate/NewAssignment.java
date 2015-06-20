@@ -165,10 +165,10 @@ public class NewAssignment extends ActionBarActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         closeDB();
         AssignmentList.cursorAdapter.notifyDataSetChanged();
         supportFinishAfterTransition();
+        super.onDestroy();
     }
 
     private void closeDB() {
@@ -211,12 +211,11 @@ public class NewAssignment extends ActionBarActivity {
         }
 
         if(id == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
             closeDB();
-            Cursor newCursor = myDb.getAllRows();
-            AssignmentList.cursorAdapter.changeCursor(newCursor);
-            AssignmentList.cursorAdapter.notifyDataSetChanged();
             supportFinishAfterTransition();
+            final Intent intent = NavUtils.getParentActivityIntent(this);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            NavUtils.navigateUpTo(this, intent);
             return true;
         }
 
